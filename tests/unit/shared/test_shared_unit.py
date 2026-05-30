@@ -1,7 +1,3 @@
-"""
-Unit tests for shared components (health, rabbitmq, base).
-Marker: unit
-"""
 import pytest
 from unittest.mock import MagicMock, patch
 from app.shared.health import rabbit_healthcheck
