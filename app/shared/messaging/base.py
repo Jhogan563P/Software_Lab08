@@ -1,12 +1,10 @@
 from abc import ABC, abstractmethod
-from typing import Callable, Generic, TypeVar
+from typing import Callable
 
 import pika
 
-T = TypeVar("T")
 
-
-class BaseRabbitPublisher(ABC, Generic[T]):
+class BaseRabbitPublisher[T](ABC):
     def __init__(
         self,
         connection_factory: Callable[[], pika.BlockingConnection],
@@ -37,7 +35,7 @@ class BaseRabbitPublisher(ABC, Generic[T]):
         raise NotImplementedError
 
 
-class BaseRabbitConsumer(ABC, Generic[T]):
+class BaseRabbitConsumer[T](ABC):
     def __init__(
         self,
         connection_factory: Callable[[], pika.BlockingConnection],
