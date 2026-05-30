@@ -16,10 +16,13 @@ from app.services.rewards_service.infrastructure.repository.in_memory import InM
 from app.shared.messaging.rabbitmq import RabbitConnectionFactory
 
 
-pytestmark = pytest.mark.skipif(
-    not os.getenv("RABBIT_HOST") or not os.getenv("RABBIT_USER") or not os.getenv("RABBIT_PASS"),
-    reason="RabbitMQ environment variables are required for the real integration test.",
-)
+pytestmark = [
+    pytest.mark.real,
+    pytest.mark.skipif(
+        not os.getenv("RABBIT_HOST") or not os.getenv("RABBIT_USER") or not os.getenv("RABBIT_PASS"),
+        reason="RabbitMQ environment variables are required for the real integration test.",
+    )
+]
 
 
 def _drain_queue(queue_name: str) -> None:
