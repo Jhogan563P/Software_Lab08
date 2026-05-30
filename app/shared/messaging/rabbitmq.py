@@ -21,6 +21,9 @@ class RabbitConnectionFactory:
             credentials,
         )
 
+    def create_connection(self) -> pika.BlockingConnection:
+        return pika.BlockingConnection(self.create_parameters())
+
     @staticmethod
     def dumps(message: dict) -> str:
         return json.dumps(message)

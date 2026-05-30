@@ -1,6 +1,9 @@
+import pytest
 from fastapi.testclient import TestClient
 
-from app.entrypoints.api.main import app, customer_repository
+from app.services.customer_service.main import app, customer_repository
+
+pytestmark = pytest.mark.integration
 
 
 def test_register_customer_endpoint():

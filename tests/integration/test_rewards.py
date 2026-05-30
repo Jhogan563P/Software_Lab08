@@ -1,5 +1,8 @@
-from app.rewards.application.use_cases import ProcessRewardUseCase
-from app.rewards.infrastructure.repository.in_memory import InMemoryRewardRepository
+import pytest
+from app.services.rewards_service.application.use_cases import ProcessRewardUseCase
+from app.services.rewards_service.infrastructure.repository.in_memory import InMemoryRewardRepository
+
+pytestmark = pytest.mark.integration
 
 
 def test_calculate_points_and_cashback():

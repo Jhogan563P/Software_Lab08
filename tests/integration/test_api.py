@@ -1,5 +1,8 @@
+import pytest
 from fastapi.testclient import TestClient
-from app.entrypoints.api.main import app
+from app.services.dinner_service.main import app
+
+pytestmark = pytest.mark.integration
 
 
 def test_register_dinner_endpoint(monkeypatch):
@@ -12,7 +15,7 @@ def test_register_dinner_endpoint(monkeypatch):
     def fake_create_publisher():
         return fake
 
-    monkeypatch.setattr("app.entrypoints.api.main.create_publisher", fake_create_publisher)
+    monkeypatch.setattr("app.services.dinner_service.main.create_publisher", fake_create_publisher)
 
     client = TestClient(app)
     payload = {"amount": 50.0, "card_number": "4111111111111111", "restaurant_id": "R1"}
